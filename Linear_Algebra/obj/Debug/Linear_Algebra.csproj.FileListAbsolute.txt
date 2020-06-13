@@ -1,0 +1,6 @@
+/Users/Sylvester/Projects/Linear_Algebra/Linear_Algebra/bin/Debug/Linear_Algebra.exe
+/Users/Sylvester/Projects/Linear_Algebra/Linear_Algebra/bin/Debug/Linear_Algebra.pdb
+/Users/Sylvester/Projects/Linear_Algebra/Linear_Algebra/obj/Debug/Linear_Algebra.csprojAssemblyReference.cache
+/Users/Sylvester/Projects/Linear_Algebra/Linear_Algebra/obj/Debug/Linear_Algebra.csproj.CoreCompileInputs.cache
+/Users/Sylvester/Projects/Linear_Algebra/Linear_Algebra/obj/Debug/Linear_Algebra.exe
+/Users/Sylvester/Projects/Linear_Algebra/Linear_Algebra/obj/Debug/Linear_Algebra.pdb
