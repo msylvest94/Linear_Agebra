@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{06EC84C6-F5FF-4DD6-95BA-598558A67807}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Linear_Algebra/Matrix.cs">
     <Files>
-      <File FileName="Linear_Algebra/Program.cs" Line="1" Column="1" />
-      <File FileName="Linear_Algebra/Matrix.cs" Line="1" Column="1" />
+      <File FileName="Linear_Algebra/Program.cs" Line="79" Column="56" />
+      <File FileName="Linear_Algebra/Matrix.cs" Line="175" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
