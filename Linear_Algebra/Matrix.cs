@@ -16,7 +16,7 @@ namespace Linear_Algebra
             }
             else
             {
-                size = new int[2] { dim[0], dim[1]};
+                size = new int[2] { entries.GetUpperBound(0)+1, entries.GetUpperBound(1)+1 };
             }
             
         }
@@ -68,7 +68,7 @@ namespace Linear_Algebra
             {
                 for(int j = 0; j < dim[1]; j++)
                 {
-                    transMatrix.entries[i,j] = this.entries[j,i];
+                    transMatrix.entries[i,j] = entries[j,i];
                 }
             }
 
@@ -92,18 +92,18 @@ namespace Linear_Algebra
         }
 
 
-        public static Matrix Scale(double s, Matrix Mat1)
+        public  Matrix Scale(double s)
         {
-            Matrix scaleMat = CreateInitializedMat(Mat1.dim[0], Mat1.dim[1]);
+            Matrix scaleMat = CreateInitializedMat(dim[0], dim[1]);
 
-            for (int i = 0; i < Mat1.dim[0]; i++)
+            for (int i = 0; i < dim[0]; i++)
             {
 
 
-                for (int j = 0; j < Mat1.dim[1]; j++)
+                for (int j = 0; j < dim[1]; j++)
                 {
 
-                    scaleMat.entries[i,j] = Mat1.entries[i,j] * s;
+                    scaleMat.entries[i,j] = entries[i,j] * s;
 
                 }
             }
