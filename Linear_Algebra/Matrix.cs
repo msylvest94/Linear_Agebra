@@ -92,7 +92,6 @@ namespace Linear_Algebra
             return sumMat;
         }
 
-
         public static Matrix Scale(double s, Matrix Mat1)
         {
             Matrix scaleMat = CreateInitializedMat(Mat1.dim[0], Mat1.dim[1]);
@@ -160,7 +159,7 @@ namespace Linear_Algebra
                 }
                 else
                 {
-                    output = false;
+                     ;
                 }
 
                 return output;
