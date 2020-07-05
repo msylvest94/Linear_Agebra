@@ -76,10 +76,12 @@ namespace Linear_Algebra
 
             Console.WriteLine("Comparing dimensions of Matrices");
             Console.WriteLine("Mat1 & Mat2");
-            bool output = Matrix.CheckDim(Mat1, Mat2, 2);
+            Matrix.CheckDim(Mat1, Mat2, 0);
 
-            Console.WriteLine(output);
 
+            Console.WriteLine("Adding two matrices that don't have the same dimensions.");
+            Matrix.Add(Mat1, C1);
+         
         }
     }
 }

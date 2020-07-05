@@ -79,6 +79,7 @@ namespace Linear_Algebra
 
         public static Matrix Add(Matrix Mat1, Matrix Mat2)
         {
+            CheckDim(Mat1, Mat2);
             Matrix sumMat = CreateInitializedMat(Mat1.dim[0], Mat1.dim[1]);
 
             for (int i = 0; i < Mat1.dim[0]; i++)
@@ -135,53 +136,46 @@ namespace Linear_Algebra
             return new Matrix(VectArray);
         }
 
-        public static bool CheckDim(Matrix Mat1, Matrix Mat2, int d = 0)
+        public static void CheckDim(Matrix Mat1, Matrix Mat2, int d = 0)
         {
-            bool output = new bool();
-
+    
             if(d == 0){
                 if (Mat1.dim[0] == Mat2.dim[0] && Mat1.dim[1] == Mat2.dim[1])
                 {
-                    output = true;
+                   
                 }
                 else
                 {
-                    output = false;
+                    throw new MatrixSizeException("Matrix dimensions do not match");
                 }
 
-                return output;
             }
-            if (d == 1)
+            else if (d == 1)
             {
                 if (Mat1.dim[0] == Mat2.dim[0])
                 {
-                    output = true;
+                   
                 }
                 else
                 {
-                     ;
+                     throw new MatrixSizeException("Matrices have different number of rows");
                 }
 
-                return output;
             }
-            if (d == 2)
+            else if (d == 2)
             {
                 if (Mat1.dim[1] == Mat2.dim[1])
                 {
-                    output = true;
                 }
                 else
                 {
-                    output = false;
+                    throw new MatrixSizeException("Matrices have different number of columns");
                 }
 
-                return output;
             }
             else
             {
                 Console.WriteLine("Error third entry must be integer between 0 and 2 \n 0: do all dimensions match. \n 1: do they have the same number of rows. \n 2: do they have the same number of columns.");
-                output = false;
-                return output;
 
             }
         }
