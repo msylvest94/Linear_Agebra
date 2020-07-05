@@ -60,6 +60,20 @@ namespace Linear_Algebra
 
             }
 
+            Console.WriteLine("Multiplying Matrix and Matrix Transpose");
+            Matrix prodMat = Matrix.Multiply(Mat1, Mat2);
+
+            Console.WriteLine("Displaying Matrix Product");
+            for (int i = 0; i < prodMat.dim[0]; i++)
+            {
+                for (int j = 0; j < prodMat.dim[1]; j++)
+                {
+                    Console.WriteLine(prodMat.entries[i, j]);
+                }
+
+            }
+
+
             Console.WriteLine("Grabbing Column from Mat1");
             Matrix C1 = Mat1.Column(1);
 
@@ -76,12 +90,9 @@ namespace Linear_Algebra
 
             Console.WriteLine("Comparing dimensions of Matrices");
             Console.WriteLine("Mat1 & Mat2");
-            Matrix.CheckDim(Mat1, Mat2, 0);
 
 
-            Console.WriteLine("Adding two matrices that don't have the same dimensions.");
-            Matrix.Add(Mat1, C1);
-         
+
         }
     }
 }
