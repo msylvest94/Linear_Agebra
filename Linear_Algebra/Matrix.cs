@@ -61,6 +61,34 @@ namespace Linear_Algebra
 
         }
 
+        public double Norm(Matrix Mat1)
+        {
+            double norm = 0;
+            if(dim[0] == 1)
+            {
+                for(int i = 0; i < Mat1.dim[1]; i++)
+                {
+                    norm = norm + Math.Pow(Mat1.entries[0, i],2);
+                }
+                norm = Math.Sqrt(norm);
+
+                return norm;
+            }
+            else if(dim[1] == 1)
+            {
+                for (int i = 0; i < Mat1.dim[0]; i++)
+                {
+                    norm = norm + Math.Pow(Mat1.entries[1, 0], 2);
+                }
+                norm = Math.Sqrt(norm);
+
+                return norm;
+            }
+            else
+            {
+                throw new MatrixSizeException("Matrix must be a row or column vector");
+            }
+        }
 
         public Matrix Transpose()
         {
@@ -149,14 +177,32 @@ namespace Linear_Algebra
             }
         }
 
-        public static Matrix CreateInitializedMat(int r, int c)
+
+        public string Print()
+        {
+            string matString = "";
+
+            for(int i = 0; i < dim[0]; i++)
+            {
+                for(int j = 0; j < dim[1]; j++)
+                {
+                    matString = matString + entries[i,j].ToString() + ",";
+                }
+
+                matString = matString + "\n";
+            }
+
+            return matString;
+        }
+
+        private static Matrix CreateInitializedMat(int r, int c)
         {
             double[,] VectArray = new double[r,c];
 
             return new Matrix(VectArray);
         }
 
-        public static void CheckDim(Matrix Mat1, Matrix Mat2, int d)
+        private static void CheckDim(Matrix Mat1, Matrix Mat2, int d)
         {
 
             if (d == 0)
@@ -189,6 +235,8 @@ namespace Linear_Algebra
 
             }
         }
+
+        
 
 
 
