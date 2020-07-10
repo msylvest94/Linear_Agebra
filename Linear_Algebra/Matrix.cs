@@ -68,7 +68,7 @@ namespace Linear_Algebra
             {
                 for(int i = 0; i < Mat1.dim[1]; i++)
                 {
-                    norm = norm + Math.Pow(Mat1.entries[0, i],2);
+                    norm += Math.Pow(Mat1.entries[0, i],2);
                 }
                 norm = Math.Sqrt(norm);
 
@@ -78,7 +78,7 @@ namespace Linear_Algebra
             {
                 for (int i = 0; i < Mat1.dim[0]; i++)
                 {
-                    norm = norm + Math.Pow(Mat1.entries[1, 0], 2);
+                    norm += Math.Pow(Mat1.entries[1, 0], 2);
                 }
                 norm = Math.Sqrt(norm);
 
@@ -189,7 +189,7 @@ namespace Linear_Algebra
                     matString = matString + entries[i,j].ToString() + ",";
                 }
 
-                matString = matString + "\n";
+                matString += "\n";
             }
 
             return matString;
