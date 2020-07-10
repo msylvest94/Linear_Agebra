@@ -23,27 +23,14 @@ namespace Linear_Algebra
             Matrix Mat1 = new Matrix(M1);
 
             Console.WriteLine("Displaying Matrix");
-            for (int i = 0; i < Mat1.dim[0]; i++)
-            {
-                for(int j = 0; j < Mat1.dim[1]; j++)
-                {
-                    Console.WriteLine(Mat1.entries[i, j]);
-                }
-     
-            }
+            Mat1.Print();
 
             Console.WriteLine("Creating Matix Transpose");
             Matrix Mat2 = Mat1.Transpose();
 
             Console.WriteLine("Displaying Matrix Tranpose");
-            for (int i = 0; i < Mat2.dim[0]; i++)
-            {
-                for (int j = 0; j < Mat2.dim[1]; j++)
-                {
-                    Console.WriteLine(Mat2.entries[i, j]);
-                }
+            Mat2.Print();
 
-            }
             Console.WriteLine("Check Size Field");
             Array.ForEach(Mat2.dim,Console.WriteLine);
 
@@ -51,27 +38,26 @@ namespace Linear_Algebra
             Matrix sumMat = Matrix.Add(Mat1, Mat2);
 
             Console.WriteLine("Displaying Matrix Sum");
-            for (int i = 0; i < sumMat.dim[0]; i++)
-            {
-                for (int j = 0; j < sumMat.dim[1]; j++)
-                {
-                    Console.WriteLine(sumMat.entries[i, j]);
-                }
+            sumMat.Print();
 
-            }
+            Console.WriteLine("Multiplying Matrix and Matrix Transpose");
+            Matrix prodMat = Matrix.Multiply(Mat1, Mat2);
+
+            Console.WriteLine("Displaying Matrix Product");
+            prodMat.Print();
+
 
             Console.WriteLine("Grabbing Column from Mat1");
             Matrix C1 = Mat1.Column(1);
 
             Console.WriteLine("Displaying Column");
-            for (int i = 0; i < C1.dim[0]; i++)
-            {
-                for (int j = 0; j < C1.dim[1]; j++)
-                {
-                    Console.WriteLine(C1.entries[i, j]);
-                }
+            C1.Print();
 
-            }
+            Console.WriteLine("Comparing dimensions of Matrices");
+            Console.WriteLine("Mat1 & Mat2");
+
+
+            Mat1.Print();
 
         }
     }

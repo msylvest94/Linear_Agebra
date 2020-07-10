@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Linear_Algebra
 {
     public class Matrix
@@ -10,13 +11,14 @@ namespace Linear_Algebra
         {
 
             entries = input;
+
             if (entries.GetUpperBound(0) == -1 || entries.GetUpperBound(1) == -1)
             {
                 size = new int[] { 0, 0};
             }
             else
             {
-                size = new int[2] { dim[0], dim[1]};
+                size = new int[2] {entries.GetUpperBound(0)+1, entries.GetUpperBound(1)+1};
             }
             
         }
@@ -31,11 +33,11 @@ namespace Linear_Algebra
 
         public Matrix Row(int r)
         {
-            double[,] Row = new double[1,this.dim[1]];
+            double[,] Row = new double[1,dim[1]];
 
-            for(int i = 0; i < this.dim[1]; i++)
+            for(int i = 0; i < dim[1]; i++)
             {
-                Row[0, i] = this.entries[r-1, i];
+                Row[0, i] = entries[r, i];
             }
 
             Matrix MatRow = new Matrix(Row);
@@ -48,9 +50,9 @@ namespace Linear_Algebra
         {
             double[,] Column = new double[this.dim[0],1];
 
-            for (int i = 0; i < this.dim[0]; i++)
+            for (int i = 0; i < dim[0]; i++)
             {
-                Column[i, 0] = this.entries[i, c-1];
+                Column[i, 0] = entries[i, c];
             }
 
             Matrix MatCol = new Matrix(Column);
@@ -59,6 +61,34 @@ namespace Linear_Algebra
 
         }
 
+        public double Norm(Matrix Mat1)
+        {
+            double norm = 0;
+            if(dim[0] == 1)
+            {
+                for(int i = 0; i < Mat1.dim[1]; i++)
+                {
+                    norm += Math.Pow(Mat1.entries[0, i],2);
+                }
+                norm = Math.Sqrt(norm);
+
+                return norm;
+            }
+            else if(dim[1] == 1)
+            {
+                for (int i = 0; i < Mat1.dim[0]; i++)
+                {
+                    norm += Math.Pow(Mat1.entries[1, 0], 2);
+                }
+                norm = Math.Sqrt(norm);
+
+                return norm;
+            }
+            else
+            {
+                throw new MatrixSizeException("Matrix must be a row or column vector");
+            }
+        }
 
         public Matrix Transpose()
         {
@@ -68,7 +98,7 @@ namespace Linear_Algebra
             {
                 for(int j = 0; j < dim[1]; j++)
                 {
-                    transMatrix.entries[i,j] = this.entries[j,i];
+                    transMatrix.entries[i,j] = entries[j,i];
                 }
             }
 
@@ -78,6 +108,8 @@ namespace Linear_Algebra
 
         public static Matrix Add(Matrix Mat1, Matrix Mat2)
         {
+            CheckDim(Mat1, Mat2, 0);
+
             Matrix sumMat = CreateInitializedMat(Mat1.dim[0], Mat1.dim[1]);
 
             for (int i = 0; i < Mat1.dim[0]; i++)
@@ -91,20 +123,37 @@ namespace Linear_Algebra
             return sumMat;
         }
 
-
-        public static Matrix Scale(double s, Matrix Mat1)
+        public static Matrix Multiply(Matrix Mat1, Matrix Mat2)
         {
-            Matrix scaleMat = CreateInitializedMat(Mat1.dim[0], Mat1.dim[1]);
+            CheckDim(Mat1, Mat2, 1);
 
-            for (int i = 0; i < Mat1.dim[0]; i++)
+            Matrix prodMat = CreateInitializedMat(Mat1.dim[0], Mat2.dim[1]);
+
+            for(int k = 0; k < Mat2.dim[1]; k++)
             {
+                Matrix prodCol = CreateInitializedMat(Mat1.dim[1], 1);
 
-
-                for (int j = 0; j < Mat1.dim[1]; j++)
+                for (int i = 0; i < Mat1.dim[1]; i++)
                 {
+                    prodCol = Matrix.Add(prodCol,Mat1.Column(i).Scale(Mat2.entries[i, k]));
+                }
 
-                    scaleMat.entries[i,j] = Mat1.entries[i,j] * s;
+                prodMat.SetColumn(prodCol, k);
+            }
 
+            return prodMat;
+        }
+
+
+        public Matrix Scale(double s)
+        {
+            Matrix scaleMat = CreateInitializedMat(dim[0], dim[1]);
+
+            for (int i = 0; i < dim[0]; i++)
+            { 
+                for (int j = 0; j < dim[1]; j++)
+                {
+                    scaleMat.entries[i,j] = entries[i,j] * s;
                 }
             }
 
@@ -112,11 +161,11 @@ namespace Linear_Algebra
         }
 
 
-        public void SetColumn(Matrix Mat1,int c)
+        public void SetColumn(Matrix Mat1, int c)
         {
             for(int i = 0; i < dim[0]; i++)
             {
-                entries[i, c] = Mat1.entries[i, 1];
+                entries[i, c] = Mat1.entries[i, 0];
             }
         }
 
@@ -124,8 +173,24 @@ namespace Linear_Algebra
         {
             for (int i = 0; i < dim[1]; i++)
             {
-                entries[r, i] = Mat1.entries[1, i];
+                entries[r, i] = Mat1.entries[0, i];
             }
+        }
+
+
+        public void Print()
+        {
+
+            for(int i = 0; i < dim[0]; i++)
+            {
+                for(int j = 0; j < dim[1]; j++)
+                {
+                    Console.Write("{0,-5}",entries[i,j]);
+                }
+
+                Console.Write("\n");
+            }
+
         }
 
         private static Matrix CreateInitializedMat(int r, int c)
@@ -135,21 +200,41 @@ namespace Linear_Algebra
             return new Matrix(VectArray);
         }
 
-        private static bool CheckDim(Matrix Mat1, Matrix Mat2)
+        private static void CheckDim(Matrix Mat1, Matrix Mat2, int d)
         {
-            bool output = new bool();
 
-            if(Mat1.dim == Mat2.dim)
+            if (d == 0)
             {
-                output = true;
+                if (Mat1.dim[0] == Mat2.dim[0] && Mat1.dim[1] == Mat2.dim[1])
+                {
+
+                }
+                else
+                {
+                    throw new MatrixSizeException("Matrix dimensions do not match");
+                }
+
+            }
+            else if (d == 1)
+            {
+                if (Mat1.dim[1] == Mat2.dim[0])
+                {
+
+                }
+                else
+                {
+                    throw new MatrixSizeException("Matrix 1 does not have as many columns as Matrix 2 has rows");
+                }
+
             }
             else
             {
-                output = false;
-            }
+                Console.WriteLine("Error third entry must be integer be 0 or 1 \n 0: do all dimensions match. \n 1: do matrix dimension allow multiplcation");
 
-            return output;
+            }
         }
+
+        
 
 
 
