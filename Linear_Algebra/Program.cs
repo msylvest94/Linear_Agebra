@@ -23,13 +23,13 @@ namespace Linear_Algebra
             Matrix Mat1 = new Matrix(M1);
 
             Console.WriteLine("Displaying Matrix");
-            Console.WriteLine(Mat1.Print());
+            Mat1.Print();
 
             Console.WriteLine("Creating Matix Transpose");
             Matrix Mat2 = Mat1.Transpose();
 
             Console.WriteLine("Displaying Matrix Tranpose");
-            Console.WriteLine(Mat2.Print());
+            Mat2.Print();
 
             Console.WriteLine("Check Size Field");
             Array.ForEach(Mat2.dim,Console.WriteLine);
@@ -38,26 +38,26 @@ namespace Linear_Algebra
             Matrix sumMat = Matrix.Add(Mat1, Mat2);
 
             Console.WriteLine("Displaying Matrix Sum");
-            Console.WriteLine(sumMat.Print());
+            sumMat.Print();
 
             Console.WriteLine("Multiplying Matrix and Matrix Transpose");
             Matrix prodMat = Matrix.Multiply(Mat1, Mat2);
 
             Console.WriteLine("Displaying Matrix Product");
-            Console.WriteLine(prodMat.Print());
+            prodMat.Print();
 
 
             Console.WriteLine("Grabbing Column from Mat1");
             Matrix C1 = Mat1.Column(1);
 
             Console.WriteLine("Displaying Column");
-            Console.WriteLine(C1.Print());
+            C1.Print();
 
             Console.WriteLine("Comparing dimensions of Matrices");
             Console.WriteLine("Mat1 & Mat2");
 
 
-            Console.WriteLine(Mat1.Print());
+            Mat1.Print();
 
         }
     }

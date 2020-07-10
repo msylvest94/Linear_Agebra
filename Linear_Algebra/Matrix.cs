@@ -33,11 +33,11 @@ namespace Linear_Algebra
 
         public Matrix Row(int r)
         {
-            double[,] Row = new double[1,this.dim[1]];
+            double[,] Row = new double[1,dim[1]];
 
-            for(int i = 0; i < this.dim[1]; i++)
+            for(int i = 0; i < dim[1]; i++)
             {
-                Row[0, i] = this.entries[r, i];
+                Row[0, i] = entries[r, i];
             }
 
             Matrix MatRow = new Matrix(Row);
@@ -50,9 +50,9 @@ namespace Linear_Algebra
         {
             double[,] Column = new double[this.dim[0],1];
 
-            for (int i = 0; i < this.dim[0]; i++)
+            for (int i = 0; i < dim[0]; i++)
             {
-                Column[i, 0] = this.entries[i, c];
+                Column[i, 0] = entries[i, c];
             }
 
             Matrix MatCol = new Matrix(Column);
@@ -98,7 +98,7 @@ namespace Linear_Algebra
             {
                 for(int j = 0; j < dim[1]; j++)
                 {
-                    transMatrix.entries[i,j] = this.entries[j,i];
+                    transMatrix.entries[i,j] = entries[j,i];
                 }
             }
 
@@ -178,21 +178,19 @@ namespace Linear_Algebra
         }
 
 
-        public string Print()
+        public void Print()
         {
-            string matString = "";
 
             for(int i = 0; i < dim[0]; i++)
             {
                 for(int j = 0; j < dim[1]; j++)
                 {
-                    matString = matString + entries[i,j].ToString() + ",";
+                    Console.Write("{0,-5}",entries[i,j]);
                 }
 
-                matString += "\n";
+                Console.Write("\n");
             }
 
-            return matString;
         }
 
         private static Matrix CreateInitializedMat(int r, int c)
