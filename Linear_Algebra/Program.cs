@@ -12,7 +12,7 @@ namespace Linear_Algebra
             double[] V2 = new double[] { 3, 4 };
 
             Console.WriteLine("Creating Array of Arrays");
-            double[,] M1 = new double[2,3] { { 1, 1, 1} , { 3, 7, 5} };
+            double[,] M1 = new double[2,2] { { 1, 142.17 } , { 3, 4 } };
 
             //Console.WriteLine("Displaying Arrays");
             //Array.ForEach(V1, Console.WriteLine);
@@ -24,7 +24,6 @@ namespace Linear_Algebra
             Mat1.Print();
             Console.WriteLine(Mat1.Rank());
           
-
             //Console.WriteLine("Displaying Matrix");
             //Mat1.Print();
 

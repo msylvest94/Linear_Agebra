@@ -244,7 +244,19 @@ namespace Linear_Algebra
             {
                 for(int j = 0; j < dim[1]; j++)
                 {
-                    Console.Write("{0,-5}",entries[i,j]);
+                    if (j == 0)
+                    {
+                        Console.Write("   ");
+                    }
+
+                    Console.Write("  {0,-9:F3}",entries[i,j]);
+                    //Console.Write($"{blanks}{entries[i, j]}");
+                    //string blanks = "  ";
+                    //if (j == 0)
+                    //{
+                    //    blanks += "     ";
+                    //}
+                    //Console.Write($"{blanks}{entries[i, j]}");
                 }
 
                 Console.Write("\n");
